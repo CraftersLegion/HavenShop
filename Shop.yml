@@ -21,6 +21,17 @@ ShopEvents:
         on reload scripts:
         - inject ShopStartupInit
         
+        # Shop Open Event #
+        on player right clicks npc:
+        - foreach <yaml[shops].list_keys[]> as:shop:
+            - if <yaml[shops].read[<def[shop]>.npc]> == <context.entity>:
+                - define shopExists:true
+                - flag player shop:<def[shop]>
+                - foreach stop
+        - if <def[shopExists]||null> == true:
+            - define shop <player.flag[shop]>
+            - inject ShopTrigger
+        
 ShopInventory:
     type: inventory
     debug: false
@@ -33,3 +44,25 @@ ShopInventory:
     - "[] [] [] [] [] [] [] [] []"
     - "[] [] [] [] [] [] [] [] []"
     - "[] [] [] [] [] [] [] [] []"
+    
+ShopTrigger:
+    type: task
+    debug: false
+    script:
+    - define shopInventory in@ShopInventory
+    
+    # Shop Page Setup
+    - if !<player.has_flag[shopPage]>:
+        - flag player shopPage: 1
+    
+    # Next Page Button
+    - if <player.flag[shopPage]> >= 1:
+        - foreach <yaml[shops].list_keys[<def[shop]>.items]> as:item:
+            - if <yaml[shops].read[<def[shop]>.items.<def[item]>.page]> >= <player.flag[shopPage]>:
+                - define nextButton:true
+                - foreach stop
+            - else:
+                - define nextButton: false
+        - if <def[nextButton]> == true:
+            - inventory set d:<def[shopInventory]> o:i@GUIArrowRight slot:54
+            
