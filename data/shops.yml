@@ -1,13 +1,6 @@
 demo:
     title: "Demo Shop"
-    nextButton:
-        item: i@GUINext
-        slot: 45
-    backButton:
-        item: i@GUIBack
-        slot: 54
-    buyButton: i@GUIBuy
-    sellButton: i@GUISell
+    npc: n@1
     items:
         0:
             item: i@STONE
