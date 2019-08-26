@@ -20,3 +20,16 @@ ShopEvents:
         - inject ShopStartupInit
         on reload scripts:
         - inject ShopStartupInit
+        
+ShopInventory:
+    type: inventory
+    debug: false
+    title: "<def[shopTitle]>"
+    size: 54
+    slots:
+    - "[] [] [] [] [] [] [] [] []"
+    - "[] [] [] [] [] [] [] [] []"
+    - "[] [] [] [] [] [] [] [] []"
+    - "[] [] [] [] [] [] [] [] []"
+    - "[] [] [] [] [] [] [] [] []"
+    - "[] [] [] [] [] [] [] [] []"
