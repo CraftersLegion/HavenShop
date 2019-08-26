@@ -1,0 +1,13 @@
+demo:
+    title: "Demo Shop"
+    nextButton: i@GUINext
+    backButton: i@GUIBack
+    items:
+        0:
+            item: i@STONE
+            name: "<&f>Stone Block"
+            lore: ""
+            buyPrice: 1.00
+            sellPrice: 0.50
+            slot: 1
+            page: 1
