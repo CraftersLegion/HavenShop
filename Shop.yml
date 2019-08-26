@@ -1,0 +1,22 @@
+ShopStartupInit:
+    type: task
+    debug: false
+    script:
+    # Create New File if Doesn't Exist
+    - if !<server.has_file[data/shops.yml]>:
+        - yaml create id:shops
+        - yaml savefile:data/shops.yml id:shop
+    # Load Old One If Already Exists
+    - else:
+        - yaml load:data/shops.yml id:shop
+        
+ShopEvents:
+    type: world
+    debug: false
+    events:
+    
+        # Shop Init Events #
+        on server preload:
+        - inject ShopStartupInit
+        on reload scripts:
+        - inject ShopStartupInit
